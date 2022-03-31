@@ -1,0 +1,20 @@
+\select@language {croatian}
+\contentsline {chapter}{\numberline {1}Uvod}{1}
+\contentsline {chapter}{\numberline {2}Primjer strukture organizacije}{3}
+\contentsline {section}{\numberline {2.1}Natjecanje STEM Games}{3}
+\contentsline {section}{\numberline {2.2}Hijerarhijska struktura organizacije}{4}
+\contentsline {section}{\numberline {2.3}Zadaci voditelja organizacije}{5}
+\contentsline {section}{\numberline {2.4}Zadaci studentskih predstavnika}{6}
+\contentsline {section}{\numberline {2.5}Zadaci operativnog tima}{6}
+\contentsline {subsection}{\numberline {2.5.1}Nabava i upravljanje inventarom}{7}
+\contentsline {subsection}{\numberline {2.5.2}Lokalni prijevoz i prijevoz organizacije}{7}
+\contentsline {subsection}{\numberline {2.5.3}Upravljanje sudionicima}{8}
+\contentsline {subsection}{\numberline {2.5.4}Dodatni program, raspored i "junior" volonteri}{8}
+\contentsline {section}{\numberline {2.6}Zadaci tima za partnerstva}{8}
+\contentsline {section}{\numberline {2.7}Zadaci tima za marketing i komunikacije te podtimova}{8}
+\contentsline {section}{\numberline {2.8}Ostale potrebe}{8}
+\contentsline {chapter}{\numberline {3}Zahtjevi na sustav}{9}
+\contentsline {chapter}{\numberline {4}Dostupni \emph {ERP} sustavi otvorenog koda}{10}
+\contentsline {chapter}{\numberline {5}Rje\IeC {\v s}enje primjenom \emph {RAD} programskog okvira}{11}
+\contentsline {chapter}{\numberline {6}Zaklju\IeC {\v c}ak}{12}
+\contentsline {chapter}{Literatura}{13}

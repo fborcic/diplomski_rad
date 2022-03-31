@@ -1,0 +1,21 @@
+\begin{thebibliography}{2}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Bradford(2014)]{bradford2014modern}
+M.~Bradford.
+\newblock \emph{Modern ERP: Select, Implement, and Use Today's Advanced
+  Business Systems}.
+\newblock North Carolina State University, 2014.
+\newblock ISBN 9781312665989.
+\newblock URL \url{https://books.google.hr/books?id=KZRqCAAAQBAJ}.
+
+\bibitem[M.~A.~Rashid(2002)]{evolutionerp}
+J.~D.~Patrick M.~A.~Rashid, L.~Hossain.
+\newblock The evolution of erp systems: A historical perspective.
+\newblock 2002.
+
+\end{thebibliography}
