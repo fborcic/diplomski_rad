@@ -1,0 +1,31 @@
+{%- extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+STEM Games Pre-Application
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="jumbotron">
+      <div class="row">
+          <div class="col-lg-2">
+		  {# <img src="{{ url_for('static', filename='logo.png') }}" style="width:100%"/> #}
+		  <img src="/pre-applications/static/logo.png" style="width:100%"/>
+          </div>
+          <div class="col-lg-10">
+    <h2>STEM Games 2022 Pre-Application</h2>
+    <p>Thank you for your interest - you have applied successfully.<br/> We will forward your application to your student representatives and you can expect to hear from them soon. If you want to contact them, you can do so by email using the contacts below:<br/></p>
+    <p style="text-align:center;">
+    {% for rep in rep_data %}
+    {{ rep.name }}: {{ rep.email }}<br/>
+        {% endfor %}
+    </p>
+    <p>
+    Hope to see you in Rovinj!
+    </p>
+          </div>
+      </div>
+  </div>
+{% endblock %}
+

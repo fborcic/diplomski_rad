@@ -1,0 +1,407 @@
+{%- extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Pre-Application statistics
+{% endblock %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="jumbotron">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <img src="http://stemgames.hr/pre-applications/static/logo.png" style="width:100%"/>
+                    </div>
+                    <div class="col-xs-10">
+                        <h2>Pre-application statistics</h2>
+                        <p>This is a report of the current pre-application statistics.
+                        Please do not share this page outside of the organization.
+                        In order to refresh the report, you need to reload this page.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Institutions
+                </div>
+                <div class="panel-body">
+                    <div class="chart-container" style="padding: 1px;">
+                    <canvas id="institution-distribution" style="width:100%; height:250px; display:block" ></canvas>
+                    </div>
+                    <label for="institution" class="control-label">Select institution to filter: </label>
+                    <select id="institution" class="form-control">
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Overall summary
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-6" style="margin-bottom:5px">
+                            <div style="text-align:center; font-size:24pt" id="num-total">
+                            </div>
+                            <div style="text-align:center">
+                                applications received
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div style="text-align:center; font-size:24pt" id="num-today">
+                            </div>
+                            <div style="text-align:center">
+                                received today
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div style="text-align:center; font-size:24pt" id="num-hour">
+                            </div>
+                            <div style="text-align:center">
+                                past hour
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div style="text-align:center; font-size:24pt" id="num-week">
+                            </div>
+                            <div style="text-align:center">
+                                this week
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Component distribution
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-6" style="margin-bottom:5px">
+                            <div style="text-align:center; font-size:24pt" id="num-problem">
+                            </div>
+                            <div style="text-align:center">
+                                problem-solving
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div style="text-align:center; font-size:24pt" id="num-sports">
+                            </div>
+                            <div style="text-align:center">
+                                sports
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div style="text-align:center; font-size:24pt" id="num-esports">
+                            </div>
+                            <div style="text-align:center">
+                                esports
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div style="text-align:center; font-size:24pt" id="num-support">
+                            </div>
+                            <div style="text-align:center">
+                                support
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Applications over time
+                </div>
+                <div class="panel-body">
+                    <div class="chart-container" style="padding: 1px;">
+                    <canvas id="applications-over-time" style="width:100%; height:250px; display:block" ></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Problem solving distribution
+                </div>
+                <div class="panel-body">
+                    <div class="chart-container" style="padding: 1px;">
+                    <canvas id="problem-distribution" style="width:100%; height:250px; display:block" ></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    eSports distribution
+                </div>
+                <div class="panel-body">
+                    <div class="chart-container" style="padding: 1px;">
+                    <canvas id="esports-distribution" style="width:100%; height:250px; display:block" ></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Sports distribution
+                </div>
+                <div class="panel-body">
+                    <div class="chart-container" style="padding: 1px;">
+                    <canvas id="sports-distribution" style="width:100%; height:250px; display:block" ></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js" integrity="sha256-AdQN98MVZs44Eq2yTwtoKufhnU+uZ7v2kXnD5vqzZVo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+window.chartColors = {
+	red: 'rgb(255, 99, 132)',
+	orange: 'rgb(255, 159, 64)',
+	yellow: 'rgb(255, 205, 86)',
+	green: 'rgb(75, 192, 192)',
+	blue: 'rgb(54, 162, 235)',
+	purple: 'rgb(153, 102, 255)',
+	grey: 'rgb(201, 203, 207)'
+};
+
+window.componentShortNames = {'1':'problem', '2':'sports', '3':'esports'};
+
+// window.timeStamps = ['2020-03-02 17:43:22', '2020-03-02 19:03:01', '2020-03-02 19:04:58', '2020-03-02 19:07:07', '2020-03-02 19:32:39', '2020-03-02 20:08:19', '2020-03-02 20:13:57', '2020-03-02 20:16:02', '2020-03-02 20:19:09', '2020-03-02 20:20:47', '2020-03-02 20:24:06', '2020-03-02 20:43:17', '2020-03-02 20:46:04', '2020-03-02 20:46:07', '2020-03-02 20:47:53', '2020-03-02 20:50:32', '2020-03-02 20:56:11', '2020-03-02 20:57:57', '2020-03-02 21:00:46', '2020-03-02 21:01:00', '2020-03-02 21:15:29', '2020-03-02 21:17:02', '2020-03-02 21:19:12', '2020-03-02 21:22:37', '2020-03-02 21:26:05', '2020-03-02 21:29:59', '2020-03-02 21:31:03', '2020-03-02 21:33:17', '2020-03-02 21:33:33', '2020-03-02 21:35:57', '2020-03-02 21:45:02', '2020-03-02 21:48:04', '2020-03-02 21:49:27', '2020-03-02 21:50:55', '2020-03-02 21:54:16', '2020-03-02 21:56:39', '2020-03-02 21:56:40', '2020-03-02 21:56:40', '2020-03-02 21:56:40', '2020-03-02 21:57:36', '2020-03-02 21:58:39', '2020-03-02 22:00:51', '2020-03-02 22:04:29', '2020-03-02 22:04:50', '2020-03-02 22:07:27', '2020-03-02 22:08:31', '2020-03-02 22:10:05', '2020-03-02 22:10:06', '2020-03-02 22:14:19', '2020-03-02 22:26:19', '2020-03-02 22:27:28', '2020-03-02 22:28:20', '2020-03-02 22:33:00', '2020-03-02 22:33:55', '2020-03-02 22:34:47', '2020-03-02 22:35:50', '2020-03-02 22:36:09', '2020-03-02 22:38:34', '2020-03-02 22:38:52', '2020-03-02 22:39:19', '2020-03-02 22:40:18', '2020-03-02 22:56:17', '2020-03-02 23:04:43', '2020-03-02 23:08:56', '2020-03-02 23:15:14', '2020-03-02 23:23:21', '2020-03-02 23:24:18', '2020-03-02 23:26:13', '2020-03-02 23:38:08', '2020-03-02 23:50:04', '2020-03-02 23:50:18', '2020-03-02 23:53:02', '2020-03-02 23:57:01', '2020-03-03 00:19:57', '2020-03-03 00:50:59', '2020-03-03 01:34:37', '2020-03-03 09:31:52', '2020-03-03 10:02:04', '2020-03-03 10:44:46', '2020-03-03 10:54:33', '2020-03-03 11:15:03', '2020-03-03 11:49:07', '2020-03-03 12:12:34', '2020-03-03 12:31:56', '2020-03-03 13:03:15', '2020-03-03 13:04:48', '2020-03-03 13:06:26', '2020-03-03 13:09:25', '2020-03-03 13:13:17', '2020-03-03 13:20:38', '2020-03-03 13:34:22', '2020-03-03 13:34:47', '2020-03-03 13:48:02', '2020-03-03 13:58:19', '2020-03-03 14:02:13', '2020-03-03 14:04:50', '2020-03-03 14:16:24', '2020-03-03 14:31:26', '2020-03-03 14:32:33', '2020-03-03 14:33:44']
+
+window.timeStamps = {{ json_strings.time_stamps|safe }};
+
+
+// window.categoryDistribution = {"1": [["Science", "Technology", "Engineering", "Mathematics"], [7, 5, 5, 6]], "2": [["Futsal - Male", "Futsal - Female", "Basketball - Male", "Basketball - Female", "Handball - Male", "Handball - Female", "Volleyball - Male", "Volleyball - Female", "Beach volleyball - Male", "Beach volleyball - Female", "Cross country running - Male", "Cross country running - Female", "Table tennis - Male", "Table tennis - Female", "Rowing - Male", "Rowing - Female", "Tennis - Male", "Tennis - Female", "Chess"], [22, 6, 9, 19, 15, 3, 7, 10, 8, 5, 7, 16, 7, 9, 1, 1, 2, 1, 11]], "3": [["PES", "CS:GO", "LoL", "Hearthstone"], [6, 8, 6, 4]]}
+
+window.categoryDistribution = {{ json_strings.category_distribution|safe }};
+
+window.institutionDistribution = {{ json_strings.institution_distribution|safe }}; //{'labels':['FER', 'PMF'], 'data':[100, 200]};
+
+/* window.numericData = {
+    total: 200,
+    today: 100,
+    hour: 3,
+    week: 100,
+    problem: 15,
+    sports: 30,
+    esports: 14,
+    support: 20
+} */
+
+window.numericData = {{ json_strings.numeric_data|safe }};
+
+window.currentInstitution = {{ current_institution|safe }};
+
+//window.institutions = {'1':'FER', '2':'PMF'};
+window.institutions = {{ json_strings.institutions|safe }};
+
+</script>
+<script type="text/javascript">
+
+
+function configureSelect(){
+    var field = $('#institution');
+    var inst_ids = Object.keys(window.institutions);
+    var insts = window.institutions;
+    field.empty();
+    field.append($('<option></option>')
+                   .attr('value', '-1')
+                   .text('All institutions'));
+    for(var i=0;i<inst_ids.length;i++){
+        var option = $('<option></option>')
+                       .attr('value', inst_ids[i])
+                       .text(insts[inst_ids[i]]);
+        if(inst_ids[i] == window.currentInstitution){
+            option.attr('selected', 'selected');
+        }
+        field.append(option);
+    }
+
+    field.change(function(){
+        var baseUrl = window.location.href.split('?')[0];
+        window.location.href = baseUrl+'?institution='+this.value;
+    });
+}
+
+function getTimeSeries(){
+    return Array.from(window.timeStamps.entries(), (e) => ({x:moment(e[1]), y:e[0]}));
+}
+
+
+function drawTime(){
+    var ctx = $('#applications-over-time');
+    var color = Chart.helpers.color;
+    var cfg = {
+                data: {
+                    datasets: [{
+                    backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
+                    borderColor: window.chartColors.red,
+                    data: getTimeSeries(),
+                    fill: false,
+                    lineTension: 0,
+                    showLine: true,
+                    pointRadius: 0,
+                    borderWidth: 2,
+                    pointHitRadius: 20
+                    }]
+                },
+                options: {
+                responsive: true,
+                legend: {display: false},
+                animation: {
+                    duration: 0
+                },
+                    scales:{
+                        xAxes:[{
+                            ticks: {
+                                callback: function(value, index, values){
+                                    return moment(value, 'x').format('MMM Do HH:mm');
+                                }
+                            }
+                        }]
+                    },
+                tooltips: {
+                   callbacks: {
+                       title: function(item, data) {
+                           return "Number of applications";
+                       },
+                      label: function(item, data) {
+                            var obj = data.datasets[item.datasetIndex].data[item.index];
+                            return moment(obj.x, 'x').format('MMM Do HH:mm')+' - '+obj.y+' applications';
+                      }
+                   }
+                },
+                },
+           }
+
+    var chart = Chart.Scatter(ctx, cfg);
+}
+
+function drawInstitutionDistribution(){
+    var color = Chart.helpers.color;
+    var ctx = $('#institution-distribution');
+    var cfg = {
+                type: 'bar',
+                data: {
+                    labels: window.institutionDistribution.labels,
+                    datasets: [{
+                        backgroundColor: color(window.chartColors.green).alpha(0.5).rgbString(),
+                        borderColor: window.chartColors.blue,
+                        borderWidth: 1,
+                        data: window.institutionDistribution.data
+                    }]
+                },
+                options: {
+                    legend: {display: false},
+                    responsive: true,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+    }
+    var chart = new Chart(ctx, cfg);
+}
+
+function fillNumericData(){
+    var data = Object.entries(window.numericData);
+    for(var i=0;i<data.length;i++){
+        $('#num-'+data[i][0]).text(data[i][1]);
+    }
+}
+
+function getComponentShortName(component){
+    return window.componentShortNames[component];
+}
+
+function getComponentCategoryLabels(component){
+    return window.categoryDistribution[component][0]
+}
+
+function getComponentCategoryData(component){
+    return window.categoryDistribution[component][1]
+}
+
+function drawDistribution(component){
+    var componentShortName = getComponentShortName(component);
+    var color = Chart.helpers.color;
+    var ctx = $('#'+componentShortName+'-distribution');
+    var cfg = {
+                type: 'bar',
+                data: {
+                    labels: getComponentCategoryLabels(component),
+                    datasets: [{
+                        backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
+                        borderColor: window.chartColors.blue,
+                        borderWidth: 1,
+                        data: getComponentCategoryData(component)
+                    }]
+                },
+                options: {
+                    legend: {display: false},
+                    responsive: true,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+    }
+    var chart = new Chart(ctx, cfg);
+}
+
+$(document).ready(function(){
+    configureSelect();
+    fillNumericData();
+    drawInstitutionDistribution();
+    drawTime();
+    drawDistribution(1);
+    drawDistribution(2);
+    drawDistribution(3);
+});
+</script>
+{% endblock %}

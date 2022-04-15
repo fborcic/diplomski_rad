@@ -1,0 +1,325 @@
+{%- extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+STEM Games Pre-Application
+{% endblock %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css" integrity="sha256-7stu7f6AB+1rx5IqD8I+XuIcK4gSnpeGeSjqsODU+Rk=" crossorigin="anonymous" />
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="jumbotron">
+      <div class="row">
+          <div class="col-sm-2">
+		  {# <img src="{{ url_for('static', filename='logo.png', _external=True) }}" style="width:100%"/> #}
+		  <img src="/pre-applications/static/logo.png" style="width:100%"/>
+          </div>
+          <div class="col-sm-10">
+    <h2>STEM Games 2022 Pre-Application</h2>
+    <p>Fill this form out to state your interest to participate in the 2022 STEM Games.
+    If you run into any trouble while doing so, contact us at help@stemgames.hr.</p>
+          </div>
+      </div>
+  </div>
+  <form class="form form-horizontal" method="post" role="form" enctype="multipart/form-data">
+      {{ form.hidden_tag() }}
+      <div class="panel panel-default">
+          <div class="panel-heading">
+              GDPR Notice
+          </div>
+          <div class="panel-body">
+                  {{ wtf.form_field(form.gdpr_checkbox, form_type='horizontal',
+                     horizontal_columns=('lg', 4, 8)) }}
+              <div class="alert alert-info text-center" role="alert" id="gdpr_notice">
+                  Before proceeding, please take your time to read the 
+		  {# <a href="{{ url_for('static', filename='GDPR_Notice2022.pdf', _external=True) }}" class="alert-link" #}
+			  {# target="_blank"> #}
+		  <a href="/pre-applications/static/GDPR_Notice2022.pdf" class="alert-link"
+                      target="_blank">
+                      Notice of use of personal data</a> where we explain why we need the data
+                  you'll be entering below as well as your rights concerning it.
+              </div>
+
+          </div>
+      </div>
+      <div class="panel panel-default">
+          <div class="panel-heading">
+              Personal data
+          </div>
+          <div class="panel-body">
+              {% for pdname in pdnames %}
+                  {{ wtf.form_field(form[pdname], form_type='horizontal',
+                     horizontal_columns=('lg', 3, 9)) }}
+              {% endfor %}
+              <div class="alert alert-warning text-center" role="alert" id="gender_inst_notice">
+                  Please select your institution and gender to continue!
+              </div>
+              <div class="alert alert-danger text-center" role="alert" id="preapps_disabled">
+                  Pre-applications for your institution are not possible at this time. There
+                  could be various reasons for this.<br/>
+                  You can contact your student representatives at one of these email addresses:<br/>
+                  <span id="rep_emails_1"></span>
+              </div>
+          </div>
+      </div>
+
+      <div class="panel panel-default" id="participation_details">
+          <div class="panel-heading">
+              Participation details
+          </div>
+          <div class="panel-body">
+              {{ wtf.form_field(form.component, form_type='horizontal',
+                     horizontal_columns=('lg', 3, 9)) }}
+              <div id="category_wrapper">
+              {{ wtf.form_field(form.categories, form_type='horizontal',
+                     horizontal_columns=('lg', 3, 9)) }}
+              </div>
+          </div>
+          <div class="alert alert-warning text-center" role="alert" id="preapps_cat_disabled">
+              <span id="no_cats_sentence">You can select up to <span id="no_cats"></span> categories
+                  of interest.</span>
+              If you don't see your desired category of participation below, it means that the
+              pre-applications in that category have not been made possible by your
+              representatives.<br/>
+              You can contact them directly at one of these email addresses:<br/>
+              <span id="rep_emails_2"></span>
+          </div>
+      </div>
+
+      <div class="panel panel-default" id="comment_area">
+          <div class="panel-heading">
+              Add a comment
+          </div>
+          <div class="panel-body">
+              {{ wtf.form_field(form.comment, form_type='horizontal',
+                     horizontal_columns=('lg', 3, 9)) }}
+          </div>
+          <div class="alert alert-info text-center" role="alert">
+              You can add a comment to be saved alongside your application if you want
+              to inform the representative of your institution of something (e.g. you filled out
+              two separate applications).
+              If you're applying for eSports and want to be teamed up
+              with someone, you can use this field to say what other students you want to
+              team up with.
+          </div>
+      </div>
+
+
+      <div class="panel panel-default" id="cv_upload">
+          <div class="panel-heading">
+              CV upload
+          </div>
+          <div class="panel-body">
+              {{ wtf.form_field(form.cv, form_type='horizontal',
+                     horizontal_columns=('lg', 3, 9)) }}
+          </div>
+      </div>
+
+      <div id="submit_button">
+      {{ wtf.form_field(form.submit, form_type='horizontal',
+             horizontal_columns=('lg', 5, 2)) }}
+      </div>
+
+  </form>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{super()}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.min.js"
+    integrity="sha256-qoj3D1oB1r2TAdqKTYuWObh01rIVC1Gmw9vWp1+q5xw=" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+    function makeCVRequired(){
+        $('#cv').attr('required','required');
+        $('#cv').parent().addClass('required');
+    }
+
+    function makeCVNotRequired(){
+        $('#cv').removeAttr('required')
+        $('#cv').parent().removeClass('required');
+    }
+
+    function institutionOrGenderChanged(){
+        var institution = $('#institution').children('option:selected').val();
+        var gender = $('#gender').children('option:selected').val();
+
+        if(gender == '' || institution == -1){
+            $('#participation_details').hide();
+            $('#cv_upload').hide();
+            $('#preapps_disabled').hide();
+            $('#gender_inst_notice').show();
+        } else {
+            $('#gender_inst_notice').hide();
+            $.ajax({
+                url:'/pre-applications/representatives',
+                type: 'GET',
+                data: {
+                    institution: institution
+                },
+                success: function(response){
+                    var email_spans = ['#rep_emails_1', '#rep_emails_2'];
+                    for(var i=0;i<email_spans.length;i++){
+                        $(email_spans[i]).empty();
+                        for(var r=0;r<response.length;r++){
+                            $(email_spans[i]).append(
+                                $("<b></b><br/>").text(response[r].name
+                                    .concat(': ').concat(response[r].email))
+                            );
+                        }
+                    }
+                },
+                error: function(response){
+                    console.log('Error fetching representatives');
+                }
+            });
+            $.ajax({
+                url: '/pre-applications/allowed_components',
+                type: 'GET',
+                data: {
+                    institution: institution,
+                    gender: gender
+                },
+                success: function(response){
+                    if(response.length === 0){
+                        $('#preapps_disabled').show();
+                        $('#participation_details').hide();
+                        $('#cv_upload').hide();
+                        $('#submit_button').hide();
+                        return;
+                    } else {
+                        $('#submit_button').show();
+                        $('#preapps_disabled').hide();
+                    }
+
+                    $('#component').empty();
+                    $('#component').append(
+                        $("<option></option>")
+                         .attr("value", "-1")
+                         .attr("data-maxchoices", "0")
+                         .attr("data-cvrequired", "false")
+                         .attr("selected", "selected")
+                         .text("---")
+                    );
+                    for(var i=0; i<response.length; i++){
+                        $('#component').append(
+                            $("<option></option>")
+                             .attr("value", response[i].id)
+                             .attr("data-maxchoices", response[i].choice_limit)
+                             .attr("data-cvrequired", response[i].cv_required)
+                             .text(response[i].name)
+                        );
+                    }
+                    $('#participation_details').show();
+                    $('#component').show();
+                    componentChanged();
+
+                },
+                error: function(xhr){
+                    console.log('Error retrieving components');
+                }
+            });
+        }
+    }
+
+    function componentChanged(){
+        var institution = $('#institution').children('option:selected').val();
+        var componentId = $('#component').children('option:selected').val();
+        var gender = $('#gender').children('option:selected').val();
+        var maxCategories = $('#component')
+                            .children('option:selected')
+                            .attr('data-maxchoices');
+        var cvRequired = ($('#component')
+                            .children('option:selected')
+                            .attr('data-cvrequired') === 'true');
+
+        if(componentId === '-1'){
+            $('#category_wrapper').hide();
+            $('#no_cats_sentence').hide();
+            return;
+        }
+
+        $('#no_cats').empty();
+        $('#no_cats').text(maxCategories);
+        $('#no_cats_sentence').show();
+
+        if(cvRequired){
+            $('#cv_upload').show();
+            makeCVRequired();
+        } else {
+            $('#cv_upload').hide();
+            makeCVNotRequired();
+        }
+
+        $.ajax({
+            url: '/pre-applications/allowed_categories',
+            type: 'GET',
+            data: {
+                institution: institution,
+                gender: gender,
+                component: componentId
+            },
+            success: function(response){
+                var options = [];
+                for(var i=0; i<response.length; i++){
+                    options.push({label: response[i].name,
+                                  title: response[i].name,
+                                  value: response[i].id})
+                }
+                $('#categories').multiselect('dataprovider', options);
+                $('#category_wrapper').show();
+            },
+            error: function(xhr){
+                console.log('Error retrieving categories');
+            }
+        });
+
+    }
+
+    $(document).ready(function() {
+        institutionOrGenderChanged();
+        componentChanged();
+
+
+        $('#preapps_disabled').hide();
+
+        $('#categories').multiselect({
+            onChange: function(option, checked) {
+                var selectedOptions = $('#categories option:selected');
+                var catSelectionLimit = $('#component')
+                                           .children('option:selected').attr('data-maxchoices');
+                catSelectionLimit = (catSelectionLimit === undefined?0:parseInt(catSelectionLimit, 10));
+                console.log(catSelectionLimit);
+
+                if (selectedOptions.length >= catSelectionLimit) {
+                    var nonSelectedOptions = $('#categories option').filter(function() {
+                        return !$(this).is(':selected');
+                    });
+
+                    nonSelectedOptions.each(function() {
+                        var input = $('input[value="' + $(this).val() + '"]');
+                        input.attr('disabled', 'disabled');
+                        input.parent('li').addClass('disabled');
+                    });
+                }
+                else {
+                    $('#categories option').each(function() {
+                        var input = $('input[value="' + $(this).val() + '"]');
+                        input.removeAttr('disabled');
+                        input.parent('li').removeClass('disabled');
+                    });
+                }
+            }
+        });
+    });
+
+    $('#institution').on('change', institutionOrGenderChanged);
+    $('#gender').on('change', institutionOrGenderChanged);
+    $('#component').on('change', componentChanged);
+
+</script>
+{% endblock %}

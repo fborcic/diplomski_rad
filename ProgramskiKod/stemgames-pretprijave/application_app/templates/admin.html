@@ -1,0 +1,236 @@
+{%- extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+STEM Games Pre-Application administration
+{% endblock %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap.min.css"/>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+      <div class="jumbotron">
+      <div class="row">
+          <div class="col-sm-2">
+              <img src="/pre-applications/static/logo.png" style="width:100%"/>
+          </div>
+          <div class="col-sm-10">
+              <h2>STEM Games 2022 Pre-Application administration</h2>
+          </div>
+      </div>
+      </div>
+      <div class="row" {{ 'style="display:none;"'|safe if hide_select else '' }}>
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Institutions
+                </div>
+                <div class="panel-body">
+                    <label for="institution" class="control-label">Select institution to filter: </label>
+                    <select id="institution" class="form-control">
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+  <div class="row">
+      <div class="col-md-12"/>
+      <div class="panel panel-default">
+      <div class="panel-heading">
+            Applications
+      </div>
+      <div class="panel-body">
+      <table id="apptable" class="table table-bordered">
+          <thead>
+              <tr>
+                  <td>
+                      First Name
+                  </td>
+                  <td>
+                      Last Name
+                  </td>
+                  <td>
+                      Email
+                  </td>
+                  <td>
+                      Institution
+                  </td>
+                  <td>
+                      Participation type
+                  </td>
+              </tr>
+          </thead>
+      </table>
+      </div>
+      </div>
+    <div class="row" id='appdetails'>
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Application details
+                </div>
+                <div class="panel-body">
+                <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><b>Name:</b> <span id="d-name"></span></p>
+                        <p><b>Gender:</b> <span id="d-gender"></span></p>
+                        <p><b>DOB:</b> <span id="d-dob"></span></p>
+                        <p><b>Email:</b> <span id="d-email"></span></p>
+                        <p><b>Street:</b> <span id="d-street"></span></p>
+                        <p><b>City:</b> <span id="d-city"></span></p>
+                        <p><b>Country:</b> <span id="d-country"></span></p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><b>PIN:</b> <span id="d-pin"></span></p>
+                        <p><b>Institution:</b> <span id="d-institution"></span></p>
+                        <p><b>Participation type:</b> <span id="d-component"></span></p>
+                        <p><b>Categories of participation:</b></p>
+                        <ul id="d-cats">
+                        </ul>
+                        <a class="btn btn-warning" href="#" id="btn-edit">
+                              <i class="fa fa-edit fa-lg"></i> Edit</a>
+                        <a class="btn btn-danger" href="#" id="btn-delete">
+                              <i class="fa fa-trash-o fa-lg"></i> Delete</a>
+                    </div>
+                </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+      </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{super()}}
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap.min.js"></script>
+    <script>
+        window.institutions = {{ institutions|safe }};
+        function populateDetails(){
+            var table = $('#apptable').dataTable().api();
+            var activeTr = $('tr.bg-info');
+
+            var activeId = table.row(activeTr).data().id;
+            $.ajax({url:'/pre-applications/application/'+activeId,
+                    success: function(response){
+                        $('#d-name').text(response.first_name+' '+response.last_name);
+                        $('#d-gender').text(response.gender);
+                        $('#d-dob').text(response.dob);
+                        $('#d-email').text(response.email);
+                        $('#d-street').text(response.street);
+                        $('#d-city').text(response.city);
+                        $('#d-country').text(response.country);
+                        $('#d-pin').text(response.pin);
+                        $('#d-institution').text(response.institution);
+                        $('#d-component').text(response.component);
+
+                        $('#d-cats').empty();
+
+                        $.each(response.categories, function(idx, val){
+                            $('#d-cats').append('<li>'+val+'</li>')
+                        });
+                        $('#appdetails').show();
+                   }});
+
+        }
+        function hideDetails(){
+            $('#appdetails').hide();
+        }
+
+        function editClick(){
+            var table = $('#apptable').dataTable().api();
+            var activeTr = $('tr.bg-info');
+            var activeId = table.row(activeTr).data().id;
+
+            window.location.href = '/pre-applications/?adret=1&edit='+activeId;
+        }
+
+        function deleteClick(){
+            var table = $('#apptable').dataTable().api();
+            var activeTr = $('tr.bg-info');
+            var activeId = table.row(activeTr).data().id;
+            if(!confirm('Are you sure you want to delete this record?'))
+                return;
+            $.ajax({url: '/pre-applications/application/'+activeId,
+                    type: 'DELETE',
+                    success: ()=>{alert('Successfully deleted');
+                                        table.ajax.reload();}})
+        }
+
+        function configureSelect(){
+            var field = $('#institution');
+            var inst_ids = Object.keys(window.institutions);
+            var insts = window.institutions;
+            field.empty();
+            field.append($('<option></option>')
+                           .attr('value', '-1')
+                           .text('All institutions'));
+            for(var i=0;i<inst_ids.length;i++){
+                var option = $('<option></option>')
+                               .attr('value', inst_ids[i])
+                               .text(insts[inst_ids[i]]);
+                if(inst_ids[i] == sessionStorage.selectedInstitution){
+                    option.attr('selected', 'selected');
+                }
+                field.append(option);
+            }
+
+            field.change(function(){
+                var table = $('#apptable').dataTable().api();
+                table.ajax.url('/pre-applications/applications?institution='+this.value);
+                table.ajax.reload();
+                sessionStorage.selectedInstitution = this.value;
+            });
+        }
+
+        $(document).ready(function() {
+            var sSI = sessionStorage.selectedInstitution;
+            var ajaxUrl = sSI==undefined?'/pre-applications/applications':'/pre-applications/applications?institution='+sSI;
+            var table = $('#apptable').DataTable( {
+                stateSave: true,
+                ajax: ajaxUrl,
+                columns: [{data: 'first_name'},
+                          {data: 'last_name'},
+                          {data: 'email'},
+                          {data: 'institution'},
+                          {data: 'component'}
+                ],
+            } );
+
+            $('#apptable tbody').on( 'click', 'tr', function () {
+                if ( !$(this).hasClass('bg-info') ) {
+                    table.$('tr.bg-info').removeClass('bg-info');
+                    $(this).addClass('bg-info');
+                    sessionStorage.selectedId = table.row($(this)).data().id;
+                    populateDetails();
+                }
+            } );
+
+
+            table.on('draw', function(){
+                var sSA = sessionStorage.selectedId;
+                hideDetails();
+                $('#apptable > tbody > tr').each(function(){
+                    if(table.row($(this)).data().id == sSA && sSA !== undefined){
+                        $(this).addClass('bg-info');
+                        populateDetails();
+                    }
+                });
+            });
+
+            $('#btn-edit').on('click', editClick);
+            $('#btn-delete').on('click', deleteClick);
+            configureSelect();
+        });
+
+
+    </script>
+{% endblock %}
