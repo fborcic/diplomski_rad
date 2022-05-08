@@ -3,6 +3,7 @@ from flask_appbuilder.models.sqla.interface import SQLAInterface
 from flask_appbuilder import ModelView, ModelRestApi
 
 from . import appbuilder, db
+from .models import Project, EduInstitution, Organization, Sponsor
 
 """
     Create your Model based REST API::
@@ -36,6 +37,24 @@ from . import appbuilder, db
     Application wide 404 error handler
 """
 
+class OrganizationModelView(ModelView):
+    datamodel = SQLAInterface(Organization)
+
+    list_columns = ['name']
+
+class SponsorModelView(ModelView):
+    datamodel = SQLAInterface(Sponsor)
+    related_views = [OrganizationModelView]
+
+    list_columns = ['name']
+
+class ProjectModelView(ModelView):
+    datamodel = SQLAInterface(Project)
+    related_views = [SponsorModelView]
+
+    list_columns = ['name']
+
+
 
 @appbuilder.app.errorhandler(404)
 def page_not_found(e):
@@ -48,3 +67,24 @@ def page_not_found(e):
 
 
 db.create_all()
+appbuilder.add_view(
+        ProjectModelView,
+        "Projects",
+        icon = "fa-folder-open-o",
+        category = "General",
+        category_icon = "fa-folder-open-o"
+    )
+appbuilder.add_view(
+        SponsorModelView,
+        "Sponsors",
+        icon = "fa-folder-open-o",
+        category = "Partnerships",
+        category_icon = "fa-folder-open-o"
+    )
+appbuilder.add_view(
+        OrganizationModelView,
+        "Organizations",
+        icon = "fa-folder-open-o",
+        category = "General",
+        category_icon = "fa-folder-open-o"
+    )
