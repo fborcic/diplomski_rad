@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex diplomski"] 1648693248 "diplomski.aux" "diplomski.bbl" "diplomski" 1648693249
+["bibtex diplomski"] 1652064014 "diplomski.aux" "diplomski.bbl" "diplomski" 1652064588
   "./fer.bst" 1284151297 26009 c9fe7ac62e814ee4c7bb7b0cdf6bf7a5 ""
-  "diplomski.aux" 1648693249 2804 1f596409da277e55085a5921569fd7b5 ""
+  "diplomski.aux" 1652064587 4482 dc4283e6649b65ba246d4ef8c5c59ea5 ""
   "diplomski.bcf" 0 -1 0 ""
-  "literatura.bib" 1648675919 461 b9d4bd4c19944fcabf5418e255101930 ""
+  "literatura.bib" 1652040025 677 f58dc03a1203ed41b612bfd9ec9b2919 ""
   (generated)
   "diplomski.bbl"
   "diplomski.blg"
-["pdflatex"] 1648693248 "diplomski.tex" "diplomski.pdf" "diplomski" 1648693249
+["pdflatex"] 1652064587 "diplomski.tex" "diplomski.pdf" "diplomski" 1652064588
   "/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2016/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2016/texmf-dist/fonts/tfm/adobe/courier/pcrr8r.tfm" 1136768653 1292 bd42be2f344128bff6d35d98474adfe3 ""
@@ -129,15 +129,15 @@
   "/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1475952536 1888048 f2c5faed5981a516f406b2ccc20bff71 ""
   "/usr/local/texlive/2016/texmf-var/web2c/pdftex/pdflatex.fmt" 1475952559 3873397 ae1faff23223bdb3249d6ec3f4f66a9e ""
   "/usr/local/texlive/2016/texmf.cnf" 1463979140 577 2938757e76f31531e65cc647e3507693 ""
-  "diplomski.aux" 1648693249 2804 1f596409da277e55085a5921569fd7b5 ""
-  "diplomski.bbl" 1648693248 739 76f85431f6bfb27f9e3a0bd64c66ef56 "bibtex diplomski"
-  "diplomski.tex" 1648693246 15470 965124c92a8342e07b1ccb4a339a1ef3 ""
-  "diplomski.toc" 1648693249 1452 01fabaa1c510ac77c8ed9a97a33ee6c1 ""
+  "diplomski.aux" 1652064587 4482 dc4283e6649b65ba246d4ef8c5c59ea5 ""
+  "diplomski.bbl" 1652064014 942 d0768d52a19e6c923430038f9700d587 "bibtex diplomski"
+  "diplomski.tex" 1652064586 32336 f81eba8a7c321c4e7ca16e1370c57fa5 ""
+  "diplomski.toc" 1652064587 2762 d728339375b54403fc12503c78c1e4ae ""
   "fer.cls" 1284151396 10145 76761193ed91b0ce7a5a85bc13f7191d ""
   "slike/hijerarhija.pdf" 1648687064 31576 3308bf2eabf6f8e33afb27f3eab4a7e8 ""
   "zadatak.pdf" 1648669222 16449 c6ce0e0595e815edbc8c45b0c9ce7dec ""
   (generated)
   "diplomski.aux"
-  "diplomski.pdf"
   "diplomski.toc"
   "diplomski.log"
+  "diplomski.pdf"

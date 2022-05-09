@@ -9,12 +9,29 @@
 \contentsline {subsection}{\numberline {2.5.1}Nabava i upravljanje inventarom}{7}
 \contentsline {subsection}{\numberline {2.5.2}Lokalni prijevoz i prijevoz organizacije}{7}
 \contentsline {subsection}{\numberline {2.5.3}Upravljanje sudionicima}{8}
-\contentsline {subsection}{\numberline {2.5.4}Dodatni program, raspored i "junior" volonteri}{8}
+\contentsline {subsection}{\numberline {2.5.4}Dodatni program, raspored i dodatni volonteri}{8}
 \contentsline {section}{\numberline {2.6}Zadaci tima za partnerstva}{8}
-\contentsline {section}{\numberline {2.7}Zadaci tima za marketing i komunikacije te podtimova}{8}
-\contentsline {section}{\numberline {2.8}Ostale potrebe}{8}
-\contentsline {chapter}{\numberline {3}Zahtjevi na sustav}{9}
-\contentsline {chapter}{\numberline {4}Dostupni \emph {ERP} sustavi otvorenog koda}{10}
-\contentsline {chapter}{\numberline {5}Rje\IeC {\v s}enje primjenom \emph {RAD} programskog okvira}{11}
-\contentsline {chapter}{\numberline {6}Zaklju\IeC {\v c}ak}{12}
-\contentsline {chapter}{Literatura}{13}
+\contentsline {section}{\numberline {2.7}Zadaci tima za marketing i komunikacije te podtimova}{9}
+\contentsline {section}{\numberline {2.8}Timovi za natjecanja u sportu, znanju i ra\IeC {\v c}unalnim igrama}{9}
+\contentsline {section}{\numberline {2.9}Ostale potrebe}{9}
+\contentsline {chapter}{\numberline {3}Podaci organizacije za pohranu u IS}{11}
+\contentsline {section}{\numberline {3.1}Podaci o osobama}{11}
+\contentsline {section}{\numberline {3.2}Korisnici sustava i uloge}{12}
+\contentsline {section}{\numberline {3.3}Podaci o organizacijama i institucijama}{12}
+\contentsline {section}{\numberline {3.4}Podaci o projektima}{13}
+\contentsline {section}{\numberline {3.5}Podaci o sudjelovanju obrazovne institucije}{13}
+\contentsline {section}{\numberline {3.6}Podaci o inventaru}{13}
+\contentsline {section}{\numberline {3.7}Podaci o dokumentu}{14}
+\contentsline {section}{\numberline {3.8}Podaci o sponzoru}{14}
+\contentsline {section}{\numberline {3.9}Podaci o sudjelovanju natjecatelja}{14}
+\contentsline {section}{\numberline {3.10}Podaci o sudjelovanju volontera}{15}
+\contentsline {section}{\numberline {3.11}Podaci o ra\IeC {\v c}unima}{15}
+\contentsline {section}{\numberline {3.12}Podaci o vozilima}{15}
+\contentsline {section}{\numberline {3.13}Podaci o bud\IeC {\v z}etu}{16}
+\contentsline {section}{\numberline {3.14}Podaci o kooperantima}{16}
+\contentsline {section}{\numberline {3.15}Pristupni podaci za mre\IeC {\v z}ne usluge}{16}
+\contentsline {section}{\numberline {3.16}Podaci o medijskom partneru}{16}
+\contentsline {chapter}{\numberline {4}Dostupni \emph {ERP} sustavi otvorenog koda}{17}
+\contentsline {chapter}{\numberline {5}Rje\IeC {\v s}enje primjenom \emph {RAD} programskog okvira}{18}
+\contentsline {chapter}{\numberline {6}Zaklju\IeC {\v c}ak}{19}
+\contentsline {chapter}{Literatura}{20}

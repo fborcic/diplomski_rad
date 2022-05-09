@@ -4,45 +4,45 @@ The top-level auxiliary file: diplomski.aux
 The style file: fer.bst
 Database file #1: literatura.bib
 Warning--empty journal in evolutionerp
-You've used 2 entries,
+You've used 3 entries,
             2773 wiz_defined-function locations,
-            606 strings with 5190 characters,
-and the built_in function-call counts, 649 in all, are:
-= -- 53
-> -- 20
-< -- 2
-+ -- 8
-- -- 6
-* -- 35
-:= -- 112
-add.period$ -- 8
-call.type$ -- 2
-change.case$ -- 7
-chr.to.int$ -- 2
-cite$ -- 5
-duplicate$ -- 39
-empty$ -- 63
-format.name$ -- 8
-if$ -- 129
+            612 strings with 5313 characters,
+and the built_in function-call counts, 1146 in all, are:
+= -- 100
+> -- 30
+< -- 4
++ -- 12
+- -- 9
+* -- 61
+:= -- 176
+add.period$ -- 11
+call.type$ -- 3
+change.case$ -- 11
+chr.to.int$ -- 3
+cite$ -- 7
+duplicate$ -- 71
+empty$ -- 116
+format.name$ -- 12
+if$ -- 248
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 3
-newline$ -- 20
-num.names$ -- 8
-pop$ -- 21
+missing$ -- 4
+newline$ -- 25
+num.names$ -- 12
+pop$ -- 33
 preamble$ -- 1
-purify$ -- 6
+purify$ -- 9
 quote$ -- 0
-skip$ -- 26
+skip$ -- 52
 stack$ -- 0
-substring$ -- 4
-swap$ -- 1
-text.length$ -- 0
+substring$ -- 34
+swap$ -- 12
+text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 17
+type$ -- 28
 warning$ -- 1
-while$ -- 6
+while$ -- 11
 width$ -- 0
-write$ -- 34
+write$ -- 47
 (There was 1 warning)
