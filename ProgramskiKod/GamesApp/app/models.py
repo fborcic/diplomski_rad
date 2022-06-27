@@ -1,16 +1,18 @@
 from flask_appbuilder import Model
+from flask_appbuilder.security.sqla.models import User, Role
 from sqlalchemy import Column, Integer, String, ForeignKey, Table
 from sqlalchemy import Boolean, Numeric, Date, DateTime
+from sqlalchemy import func, select
 from sqlalchemy.orm import relationship, backref
+from sqlalchemy.ext.hybrid import hybrid_property
+from sqlalchemy_utils import EncryptedType
 
-"""
+from . import app
 
-You can use the extra Flask-AppBuilder fields and Mixin's
-
-AuditMixin will add automatic timestamp of created and modified by who
-
-
-"""
+class UserExtended(User):
+    __tablename__ = 'ab_user'
+    person_id = Column(Integer, ForeignKey('person.id'))
+    person = relationship('Person')
 
 class Person(Model):
     id = Column(Integer, primary_key=True)
@@ -20,7 +22,7 @@ class Person(Model):
     sex = Column(String(1), nullable=False)
     oib_or_pin = Column(String(100))
 
-    def _repr_(self):
+    def __repr__(self):
         return self.full_name
 
 
@@ -39,6 +41,7 @@ class OrganizationContact(Model):
     organization = relationship('Organization', backref='contacts')
     contact_person_id = Column(Integer, ForeignKey('person.id'))
     contact_person = relationship('Person', backref='organizations')
+    role = Column(String(255))
 
 
 class Organization(Model):
@@ -48,7 +51,7 @@ class Organization(Model):
     generic_email = Column(String(200))
     oib = Column(String(50))
 
-    def _repr_(self):
+    def __repr__(self):
         return self.name
 
 
@@ -56,9 +59,9 @@ class EduInstitution(Model):
     id = Column(Integer, primary_key=True)
     abbreviation = Column(String(20), nullable=False)
     organization_id = Column(Integer, ForeignKey('organization.id'), nullable=False)
-    organization = relationship('Organization', backref=backref('edu_institution', uselist=False))
+    organization = relationship('Organization', backref=backref('edu_institution'))
 
-    def _repr_(self):
+    def __repr__(self):
         return self.organization.name
 
 
@@ -68,14 +71,14 @@ class InstitutionRepresentation(Model):
     edu_institution = relationship("EduInstitution")
     person_id = Column(Integer, ForeignKey('person.id'), nullable=False)
     person = relationship("Person")
-    main_representative = Column(Boolean, default=True, nullable=False)
+    main_representative = Column(Boolean, default=True)
 
 
 class Project(Model):
     id = Column(Integer, primary_key=True)
     name = Column(String(200), nullable=False)
 
-    def _repr_(self):
+    def __repr__(self):
         return self.name
 
 
@@ -92,47 +95,30 @@ class InventoryItem(Model):
             backref='inventory_responsible')
     location_id = Column(Integer, ForeignKey('location.id'), nullable=False)
     location = relationship('Location', backref='inventory')
-    discarded = Column(Boolean, nullable=False, default=False)
+    discarded = Column(Boolean, default=False)
 
 
-    def _repr_(self):
-        return self.name
-
-
-class ExpendableInventoryItem(Model):
-    id = Column(Integer, primary_key=True)
-    name = Column(String(200), nullable=False)
-    responsible_person_id = Column(Integer, ForeignKey('person.id'), nullable=False)
-    responsible_person = relationship('Person', foreign_keys=[responsible_person_id],
-            backref='expendables_responsible')
-
-    def _repr_(self):
+    def __repr__(self):
         return self.name
 
 
 class Location(Model):
     id = Column(Integer, primary_key=True)
     name = Column(String(200), nullable=False, unique=True)
+    address = Column(String(200))
 
-    def _repr_(self):
+    def __repr__(self):
         return self.name
 
-
-class InventoryContainer(Model):
-    id = Column(Integer, primary_key=True)
-    name = Column(String(50), nullable=False, unique=True)
-    in_use = Column(Boolean, default=True, nullable=False)
-
-    def _repr_(self):
-        return self.name
 
 class SponsorCategory(Model):
     id = Column(Integer, primary_key=True)
     name = Column(String(200), nullable=False, unique=True)
     description = Column(String(1000))
 
-    def _repr_(self):
+    def __repr__(self):
         return self.name
+
 
 class SponsorResponsivenessLevel(Model):
     id = Column(Integer, primary_key=True)
@@ -140,8 +126,9 @@ class SponsorResponsivenessLevel(Model):
     name = Column(String(50), nullable=False, unique=True)
     description = Column(String(1000))
 
-    def _repr_(self):
+    def __repr__(self):
         return self.name
+
 
 class SponsorComments(Model):
     id = Column(Integer, primary_key=True)
@@ -149,8 +136,9 @@ class SponsorComments(Model):
     sponsor_id = Column(Integer, ForeignKey('sponsor.id'), nullable=False)
     sponsor = relationship('Sponsor', backref='comments')
 
-    def _repr_(self):
+    def __repr__(self):
         return self.comment
+
 
 class Sponsor(Model):
     id = Column(Integer, primary_key=True)
@@ -165,8 +153,13 @@ class Sponsor(Model):
     responsiveness_id = Column(Integer, ForeignKey('sponsor_responsiveness_level.id'))
     responsiveness = relationship('SponsorResponsivenessLevel', backref='sponsors')
 
-    def _repr_(self):
-        return self.organization.name
+    @hybrid_property
+    def name(self):
+        return repr(self)
+
+    def __repr__(self):
+        return self.project.name + ' - ' + self.organization.name
+
 
 class SubcontractorComments(Model):
     id = Column(Integer, primary_key=True)
@@ -174,7 +167,7 @@ class SubcontractorComments(Model):
     subcontractor_id = Column(Integer, ForeignKey('subcontractor.id'), nullable=False)
     subcontractor = relationship('Subcontractor', backref='comments')
 
-    def _repr_(self):
+    def __repr__(self):
         return self.comment
 
 
@@ -185,8 +178,12 @@ class Subcontractor(Model):
     organization_id = Column(Integer, ForeignKey('organization.id'), nullable=False)
     organization = relationship('Organization', backref='subcontract')
 
-    def _repr_(self):
-        return self.organization.name
+    @hybrid_property
+    def name(self):
+        return repr(self)
+
+    def __repr__(self):
+        return self.project.name + ' - ' + self.organization.name
 
 contract_physical_copies = Table('contract_physical_copies', Model.metadata,
         Column('id', Integer, primary_key=True),
@@ -205,40 +202,40 @@ class Contract(Model):
     sponsor = relationship('Sponsor', backref='contracts')
     internal_signee_id = Column(Integer, ForeignKey('person.id'))
     internal_signee = relationship('Person')
-    signed = Column(Boolean, default=False, nullable=False)
+    signed = Column(Boolean, default=False)
     digital_copies = relationship('DigitalDocument', secondary=contract_digital_copies)
     physical_copies = relationship('PhysicalDocument', secondary=contract_physical_copies)
     invoice_incoming_id = Column(Integer, ForeignKey('invoice_incoming.id'))
-    invoice_incoming = relationship('InvoiceIncoming', backref=backref('contract', uselist=False))
+    invoice_incoming = relationship('InvoiceIncoming', backref=backref('contract'))
 
-    def _repr_(self):
-        return self.organization.name
+    def __repr__(self):
+        return self.name
 
 
 class Income(Model):
     id = Column(Integer, primary_key=True)
     name = Column(String(200), nullable=False)
     invoice_incoming_id = Column(Integer, ForeignKey('invoice_incoming.id'))
-    invoice_incoming = relationship('InvoiceIncoming', backref=backref('income', uselist=False))
+    invoice_incoming = relationship('InvoiceIncoming', backref=backref('income'))
     value = Column(Numeric, nullable=False)
     date_received = Column(Date)
 
-    def _repr_(self):
-        return self.organization.name
+    def __repr__(self):
+        return self.name
 
 
 class Expense(Model):
     id = Column(Integer, primary_key=True)
     name = Column(String(200), nullable=False)
     invoice_outgoing_id = Column(Integer, ForeignKey('invoice_outgoing.id'))
-    invoice_outgoing = relationship('InvoiceOutgoing', backref=backref('expense', uselist=False))
+    invoice_outgoing = relationship('InvoiceOutgoing', backref=backref('expense'))
     value = Column(Numeric, nullable=False)
     approved_by_id = Column(Integer, ForeignKey('person.id'), nullable=False)
     approved_by = relationship('Person')
     date_paid = Column(Date, nullable=False)
 
-    def _repr_(self):
-        return self.organization.name
+    def __repr__(self):
+        return self.name
 
 
 class PlannedExpense(Model):
@@ -247,8 +244,8 @@ class PlannedExpense(Model):
     value = Column(Numeric, nullable=False)
     date_planned = Column(Date, nullable=False)
 
-    def _repr_(self):
-        return self.organization.name
+    def __repr__(self):
+        return self.name
 
 
 class PlannedIncome(Model):
@@ -257,8 +254,8 @@ class PlannedIncome(Model):
     value = Column(Numeric, nullable=False)
     date_planned = Column(Date, nullable=False)
 
-    def _repr_(self):
-        return self.organization.name
+    def __repr__(self):
+        return self.name
 
 
 invoice_incoming_physical_copies = Table('invoice_incoming_physical_copies', Model.metadata,
@@ -276,12 +273,11 @@ invoice_incoming_digital_copies = Table('invoice_incoming_digital_copies', Model
 class InvoiceIncomingItem(Model):
     id = Column(Integer, primary_key=True)
     name = Column(String(200), nullable=False)
-    vat = Column(Numeric, nullable=False)
-    value_without_vat = Column(Numeric, nullable=False)
+    value = Column(Numeric, nullable=False)
     invoice_incoming_id = Column(Integer, ForeignKey('invoice_incoming.id'))
     invoice_incoming = relationship('InvoiceIncoming', backref='items')
-    # TODO: add hybrid to calculate value with tax
-    def _repr_(self):
+
+    def __repr__(self):
         return self.name
 
 
@@ -289,17 +285,28 @@ class InvoiceIncoming(Model):
     id = Column(Integer, primary_key=True)
     name = Column(String(200), nullable=False)
     date_issued = Column(Date, nullable=False)
+    issued_to_id = Column(Integer, ForeignKey('organization.id'))
+    issued_to = relationship('Organization')
     date_due = Column(Date, nullable=False)
     digital_copies = relationship('DigitalDocument',
         secondary=invoice_incoming_digital_copies)
     physical_copies = relationship('PhysicalDocument',
         secondary=invoice_incoming_physical_copies)
-    registered_with_accounting_by_id = Column(Integer, ForeignKey('person.id'))
-    registered_with_accounting_by = relationship('Person')
-    date_registered_with_accounting = Column(Date)
-    # TODO: add hybrid to calculate value from items
+    registered_with_accounting = Column(Boolean)
 
-    def _repr_(self):
+    @hybrid_property
+    def value(self):
+        return sum(i.value for i in self.items)
+
+    @value.expression
+    def value(cls):
+        return (
+                select([func.sum(InvoiceIncomingItem.value)]).
+                where(InvoiceIncomingItem.invoice_incoming_id == cls.id).
+                label('value')
+                )
+
+    def __repr__(self):
         return self.name
 
 
@@ -319,7 +326,8 @@ class InvoiceOutgoing(Model):
     id = Column(Integer, primary_key=True)
     name = Column(String(200), nullable=False)
     date_issued = Column(Date, nullable=False)
-    vendor_invoice_number = Column(String(500), nullable=False)
+    vendor_name = Column(String(500), nullable=False)
+    vendor_invoice_number = Column(String(500))
     value = Column(Numeric, nullable=False)
     date_due = Column(Date)
     comment = Column(String(1000))
@@ -327,11 +335,9 @@ class InvoiceOutgoing(Model):
         secondary=invoice_outgoing_digital_copies)
     physical_copies = relationship('PhysicalDocument',
         secondary=invoice_outgoing_physical_copies)
-    registered_with_accounting_by_id = Column(Integer, ForeignKey('person.id'))
-    registered_with_accounting_by = relationship('Person')
-    date_registered_with_accounting = Column(Date)
+    registered_with_accounting = Column(Boolean)
 
-    def _repr_(self):
+    def __repr__(self):
         return self.name
 
 
@@ -343,14 +349,22 @@ class ParticipantInfo(Model):
     project = relationship('Project', backref='participants')
     responsible_organization_id = Column(Integer, ForeignKey('organization.id'))
     responsible_organization = relationship('Organization', backref='responsible_for')
-    participation_approved = Column(Boolean, nullable=False, default=False)
+    participation_approved = Column(Boolean, default=False)
     approved_by_id = Column(Integer, ForeignKey('person.id'))
     approved_by = relationship('Person', foreign_keys=[approved_by_id])
+    participation_category_id = Column(Integer, ForeignKey('participation_category.id'))
+    participation_category = relationship('ParticipationCategory', backref='participants')
     t_shirt_size = Column(String(10))
 
-    def _repr_(self):
+    def __repr__(self):
         return self.person.name + ' ' + self.project.name
 
+class ParticipationCategory(Model):
+    id = Column(Integer, primary_key=True)
+    name = Column(String(100), nullable=False)
+
+    def __repr__(self):
+        return self.name
 
 class DigitalDocument(Model):
     id = Column(Integer, primary_key=True)
@@ -361,21 +375,21 @@ class DigitalDocument(Model):
     date = Column(Date, nullable=False)
     comment = Column(String(1000))
 
-    def _repr_(self):
+    def __repr__(self):
         return self.name
 
 
 class PhysicalDocument(Model):
     id = Column(Integer, primary_key=True)
     name = Column(String(200), nullable=False)
-    location_id = Column(Integer, ForeignKey('location.id'))
+    location_id = Column(Integer, ForeignKey('location.id'), nullable=False)
     location = relationship('Location', backref='documents')
     author_id = Column(Integer, ForeignKey('person.id'))
     author = relationship('Person', backref='physical_documents')
     date = Column(Date, nullable=False)
     comment = Column(String(1000))
 
-    def _repr_(self):
+    def __repr__(self):
         return self.name
 
 
@@ -384,9 +398,8 @@ class OrganizationTeam(Model):
     name = Column(String(200), nullable=False)
     part_of_team_id = Column(Integer, ForeignKey('organization_team.id'))
     part_of_team = relationship('OrganizationTeam')
-    vehicle_clearance = Column(Integer)
 
-    def _repr_(self):
+    def __repr__(self):
         return self.name
 
 
@@ -409,21 +422,21 @@ class ProjectOrganizationTeam(Model):
     organization_team_id = Column(Integer, ForeignKey('organization_team.id'))
     organization_team = relationship('OrganizationTeam')
 
-    def _repr_(self):
-        return self.name + ' ' + self.project.name
+    def __repr__(self):
+        return self.organization_team.name + ' ' + self.project.name
 
 
 class OrganizationVolunteer(Model):
     id = Column(Integer, primary_key=True)
     person_id = Column(Integer, ForeignKey('person.id'))
+    is_active = Column(Boolean)
     person = relationship('Person', backref='volunteer_data')
     member_of = relationship('ProjectOrganizationTeam', secondary=volunteer_team_membership,
             backref='members')
     lead_of = relationship('ProjectOrganizationTeam', secondary=volunteer_team_leadership,
             backref='leads')
-    # TODO: dodati hybrid za direct superiora
 
-    def _repr_(self):
+    def __repr__(self):
         return self.name
 
 
@@ -436,10 +449,10 @@ class Vehicle(Model):
     owner_organization_id = Column(Integer, ForeignKey('organization.id'))
     owner_organization = relationship('Organization', backref='cars')
     available_to_reserve = Column(Boolean, nullable=False, default=False)
-    reservation_clearance_required = Column(Integer)
 
-    def _repr_(self):
+    def __repr__(self):
         return self.name
+
 
 class VehicleReservation(Model):
     id = Column(Integer, primary_key=True)
@@ -451,46 +464,24 @@ class VehicleReservation(Model):
     reservation_end_time = Column(DateTime, nullable=False)
     vehicle_taken_time = Column(DateTime)
     vehicle_returned_time = Column(DateTime)
-    # TODO: fill this
-
-
-class LocationEntryClearance(Model):
-    id = Column(Integer, primary_key=True)
-    # TODO: fill this
-
-
-class Competitor(Model):
-    id = Column(Integer, primary_key=True)
-
-
-class CompetingTeam(Model):
-    id = Column(Integer, primary_key=True)
-
-
-class ParticipationCategory(Model):
-    id = Column(Integer, primary_key=True)
-
-
-class TeamParticipationCategory(Model):
-    id = Column(Integer, primary_key=True)
 
 
 class ToolCredentials(Model):
     id = Column(Integer, primary_key=True)
+    tool_name = Column(String(255), nullable=False)
+    username = Column(String(255))
+    password = Column(EncryptedType(String(1024), key=app.config['SECRET_KEY']))
+    have_access = relationship(Role, secondary='tool_credential_permission', backref='accessible_credentials')
 
+    def __repr__(self):
+        return self.tool_name
 
-class PressRelease(Model):
+class ToolCredentialPermission(Model):
     id = Column(Integer, primary_key=True)
+    role_id = Column(Integer, ForeignKey('ab_role.id'))
+    credentials_id = Column(Integer, ForeignKey('tool_credentials.id'))
+    role = relationship('Role')
+    credentials = relationship('ToolCredentials')
 
-
-class MediaPartner(Model):
-    id = Column(Integer, primary_key=True)
-
-
-class PressReleasePublishedInstance(Model):
-    id = Column(Integer, primary_key=True)
-
-
-class TravelSheet(Model):
-    id = Column(Integer, primary_key=True)
-
+    def __repr__(self):
+        return repr(self.user) + ' ' + self.credentials.tool_name

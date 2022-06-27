@@ -1,9 +1,17 @@
-\begin{thebibliography}{3}
+\begin{thebibliography}{9}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Bayer(2012)]{sqlalchemy}
+Michael Bayer.
+\newblock Sqlalchemy.
+\newblock U Amy Brown i Greg Wilson, urednici, \emph{The Architecture of Open
+  Source Applications Volume II: Structure, Scale, and a Few More Fearless
+  Hacks}. aosabook.org, 2012.
+\newblock URL \url{http://aosabook.org/en/sqlalchemy.html}.
 
 \bibitem[Bradford(2014)]{bradford2014modern}
 M.~Bradford.
@@ -13,15 +21,47 @@ M.~Bradford.
 \newblock ISBN 9781312665989.
 \newblock URL \url{https://books.google.hr/books?id=KZRqCAAAQBAJ}.
 
+\bibitem[Eby(2010)]{pepwsgi}
+P.~J. Eby.
+\newblock Pep 3333 – python web server gateway interface v1.0.1, Sep 2010.
+\newblock URL \url{https://peps.python.org/pep-3333/}.
+\newblock Preuzeto 16. svibnja 2022.
+
 \bibitem[Ferraiolo~D.(1992)]{rbac}
 Kuhn~R. Ferraiolo~D.
 \newblock Role-based access controls.
 \newblock U \emph{Proceedings of the 15th National Computer Security
   Conference}, stranice 554--563, 1992.
 
+\bibitem[Fougatsaro(2009)]{erpstudy}
+Vittorio~Gianni Fougatsaro.
+\newblock A study of open source erp systems.
+\newblock Magistarski rad, Blekinge Institute of Technology, 2009.
+
+\bibitem[Gaspar(2013)]{fab}
+Daniel~Vas Gaspar.
+\newblock Flask-appbuilder, 2013.
+\newblock URL \url{https://flask-appbuilder.readthedocs.io/en/latest/}.
+\newblock Preuzeto 16. svibnja 2022.
+
+\bibitem[Grinberg(2018)]{flask}
+Miguel Grinberg.
+\newblock \emph{Flask web development: developing web applications with
+  python}.
+\newblock " O'Reilly Media, Inc.", 2018.
+
 \bibitem[Rashid M.~A.(2002)]{evolutionerp}
 Patrick J.~D. Rashid M.~A., Hossain~L.
 \newblock The evolution of erp systems: A historical perspective.
 \newblock 2002.
+
+\bibitem[Sahay et~al.(2020)Sahay, Indamutsa, Di~Ruscio, i
+  Pierantonio]{low-code}
+Apurvanand Sahay, Arsene Indamutsa, Davide Di~Ruscio, i Alfonso Pierantonio.
+\newblock Supporting the understanding and comparison of low-code development
+  platforms.
+\newblock U \emph{2020 46th Euromicro Conference on Software Engineering and
+  Advanced Applications (SEAA)}, stranice 171--178, 2020.
+\newblock \doi{10.1109/SEAA51224.2020.00036}.
 
 \end{thebibliography}

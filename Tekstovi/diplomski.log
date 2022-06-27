@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.10.8)  9 MAY 2022 04:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.10.8)  27 JUN 2022 21:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -578,22 +578,48 @@ File: pppdftex.def 2016/04/19 v0.5f Pdfpages driver for pdfTeX (AM)
 \AM@toc@title=\toks28
 \c@AM@survey=\count116
 \AM@templatesizebox=\box32
-) (./diplomski.aux)
+) (/usr/local/texlive/2016/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count117
+\lst@gtempboxa=\box33
+\lst@token=\toks29
+\lst@length=\count118
+\lst@currlwidth=\dimen149
+\lst@column=\count119
+\lst@pos=\count120
+\lst@lostspace=\dimen150
+\lst@width=\dimen151
+\lst@newlines=\count121
+\lst@lineno=\count122
+\lst@maxwidth=\dimen152
+ (/usr/local/texlive/2016/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
+\c@lstnumber=\count123
+\lst@skipnumbers=\count124
+\lst@framebox=\box34
+) (/usr/local/texlive/2016/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2015/06/04 1.6 listings configuration
+))
+Package: listings 2015/06/04 1.6 (Carsten Heinz)
+ (./diplomski.aux
+
+LaTeX Warning: Label `fig:sponsormaster' multiply defined.
+
+)
 \openout1 = `diplomski.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Try loading font information for T1+ptm on input line 7.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 9.
  (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
@@ -633,17 +659,17 @@ File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 
 (/usr/local/texlive/2016/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count117
-\scratchdimen=\dimen149
-\scratchbox=\box33
-\nofMPsegments=\count118
-\nofMParguments=\count119
-\everyMPshowfont=\toks29
-\MPscratchCnt=\count120
-\MPscratchDim=\dimen150
-\MPnumerator=\count121
-\makeMPintoPDFobject=\count122
-\everyMPtoPDFconversion=\toks30
+\scratchcounter=\count125
+\scratchdimen=\dimen153
+\scratchbox=\box35
+\nofMPsegments=\count126
+\nofMParguments=\count127
+\everyMPshowfont=\toks30
+\MPscratchCnt=\count128
+\MPscratchDim=\dimen154
+\MPnumerator=\count129
+\makeMPintoPDFobject=\count130
+\everyMPtoPDFconversion=\toks31
 ) (/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2016/05/10 v0.21 Utility functions of pdfTeX for LuaTeX (HO)
  (/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/ifluatex.sty
@@ -679,8 +705,9 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
+Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\AtBeginShipoutBox=\box34
+\AtBeginShipoutBox=\box36
  (/usr/local/texlive/2016/texmf-dist/tex/latex/oberdiek/pdflscape.sty
 Package: pdflscape 2016/05/14 v0.11 Display of landscape pages in PDF (HO)
  (/usr/local/texlive/2016/texmf-dist/tex/latex/graphics/lscape.sty
@@ -688,23 +715,24 @@ Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 )
-LaTeX Font Info:    Try loading font information for T1+phv on input line 16.
+\c@lstlisting=\count131
+LaTeX Font Info:    Try loading font information for T1+phv on input line 18.
  (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 )
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 16.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 18.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 16.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 18.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <24.88> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 16.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 18.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <24.88> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 16.
-LaTeX Font Info:    Try loading font information for U+msa on input line 16.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 18.
+LaTeX Font Info:    Try loading font information for U+msa on input line 18.
  (/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 16.
+LaTeX Font Info:    Try loading font information for U+msb on input line 18.
  (/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
@@ -712,34 +740,34 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 {/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] <zadatak.pdf, id=8, 597.23125pt x 845.1575pt>
 File: zadatak.pdf Graphic file (type pdf)
  <use zadatak.pdf>
-Package pdftex.def Info: zadatak.pdf used on input line 18.
+Package pdftex.def Info: zadatak.pdf used on input line 20.
 (pdftex.def)             Requested size: 597.22978pt x 845.15544pt.
 File: zadatak.pdf Graphic file (type pdf)
  <use zadatak.pdf>
-Package pdftex.def Info: zadatak.pdf used on input line 18.
+Package pdftex.def Info: zadatak.pdf used on input line 20.
 (pdftex.def)             Requested size: 597.22978pt x 845.15544pt.
  <zadatak.pdf, id=11, page=1, 597.23125pt x 845.1575pt>
 File: zadatak.pdf Graphic file (type pdf)
  <use zadatak.pdf, page 1>
-Package pdftex.def Info: zadatak.pdf, page1 used on input line 18.
+Package pdftex.def Info: zadatak.pdf, page1 used on input line 20.
 (pdftex.def)             Requested size: 597.22978pt x 845.15544pt.
 File: zadatak.pdf Graphic file (type pdf)
  <use zadatak.pdf, page 1>
-Package pdftex.def Info: zadatak.pdf, page1 used on input line 18.
+Package pdftex.def Info: zadatak.pdf, page1 used on input line 20.
 (pdftex.def)             Requested size: 597.25711pt x 845.19412pt.
 File: zadatak.pdf Graphic file (type pdf)
  <use zadatak.pdf, page 1>
-Package pdftex.def Info: zadatak.pdf, page1 used on input line 18.
+Package pdftex.def Info: zadatak.pdf, page1 used on input line 20.
 (pdftex.def)             Requested size: 597.25711pt x 845.19412pt.
 File: zadatak.pdf Graphic file (type pdf)
  <use zadatak.pdf, page 1>
-Package pdftex.def Info: zadatak.pdf, page1 used on input line 18.
+Package pdftex.def Info: zadatak.pdf, page1 used on input line 20.
 (pdftex.def)             Requested size: 597.25711pt x 845.19412pt.
 File: zadatak.pdf Graphic file (type pdf)
  <use zadatak.pdf, page 1>
-Package pdftex.def Info: zadatak.pdf, page1 used on input line 18.
+Package pdftex.def Info: zadatak.pdf, page1 used on input line 20.
 (pdftex.def)             Requested size: 597.25711pt x 845.19412pt.
- [1 <./zadatak.pdf>] (./diplomski.toc
+ [1 <./zadatak.pdf>] [3] (./diplomski.toc
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 2.
  [4
@@ -747,14 +775,14 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
 ]
 LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <12> not available
 (Font)              Font shape `T1/ptm/b/it' tried instead on input line 34.
-)
+ [5])
 \tf@toc=\write3
 \openout3 = `diplomski.toc'.
 
- [5]
+ [6]
 Poglavlje 1.
 
-Overfull \hbox (3.79561pt too wide) in paragraph at lines 43--49
+Overfull \hbox (3.79561pt too wide) in paragraph at lines 46--52
 \T1/ptm/m/n/12 prema ge-ne-ri£-kim po-tre-bama ve-¢eg broja ko-mer-ci-jal-nih or-ga-ni-za-cija (Brad-ford (2014)).
  []
 
@@ -763,16 +791,16 @@ Overfull \hbox (3.79561pt too wide) in paragraph at lines 43--49
 ] [2]
 Poglavlje 2.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 121.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 124.
 [3
 
-] <slike/hijerarhija.pdf, id=50, 349.305pt x 530.94356pt>
+] <slike/hijerarhija.pdf, id=56, 349.305pt x 530.94356pt>
 File: slike/hijerarhija.pdf Graphic file (type pdf)
  <use slike/hijerarhija.pdf>
-Package pdftex.def Info: slike/hijerarhija.pdf used on input line 173.
+Package pdftex.def Info: slike/hijerarhija.pdf used on input line 176.
 (pdftex.def)             Requested size: 349.30414pt x 530.94225pt.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 174.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 177.
  [4] [5 <./slike/hijerarhija.pdf>] [6] [7] [8] [9] [10]
 Poglavlje 3.
 [11
@@ -780,37 +808,208 @@ Poglavlje 3.
 ] [12] [13] [14] [15] [16]
 Poglavlje 4.
 LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <24.88> not available
-(Font)              Font shape `T1/ptm/b/it' tried instead on input line 594.
+(Font)              Font shape `T1/ptm/b/it' tried instead on input line 596.
+
+Overfull \hbox (0.99545pt too wide) in paragraph at lines 632--638
+[]\T1/ptm/m/n/12 Kroz mo-dul sus-tava na-mi-je-njen za uprav-lja-njem kli-jent-skim re-sur-sima, sus-tav omo-
+ []
+
 [17
 
-]
+] [18]
 Poglavlje 5.
-[18
+[19
 
 ]
-Poglavlje 6.
-(./diplomski.bbl [19
-
-]
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 14.
+LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <14.4> not available
+(Font)              Font shape `T1/ptm/b/it' tried instead on input line 707.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 718.
  (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
-)) [20
+) [20] [21] [22] [23]
+Overfull \hbox (6.7943pt too wide) in paragraph at lines 926--928
+[]\T1/pcr/m/n/12 owner_organization_id \T1/ptm/m/n/12 -- strani klju£ or-ga-ni-za-cije vlas-nice (neo-ba-vezno) 
+ []
 
-] [21] (./diplomski.aux) ) 
+[24] [25] [26] [27] [28]
+Underfull \hbox (badness 10000) in paragraph at lines 1134--1141
+[]\T1/ptm/m/n/12 Dodatno, po-mo¢-nim ta-bli-cama \T1/ptm/m/it/12 invo-ice_outgoing_digital_copies \T1/ptm/m/n/12 i
+ []
+
+[29] [30] [31]
+Overfull \hbox (0.59097pt too wide) in paragraph at lines 1298--1304
+\T1/ptm/m/it/12 Di-gi-tal-Do-cu-ment \T1/ptm/m/n/12 (pot-po-glav-lje 5.1.19[]) po-mo¢-nim ta-bli-cama \T1/ptm/m/it/12 con-tract_physical_copies
+ []
+
+
+Overfull \hbox (1.41942pt too wide) in paragraph at lines 1307--1309
+\T1/ptm/m/n/12 Ovaj en-ti-tet pred-stav-lja kon-takt osobu neke or-ga-ni-za-cije. Po-ve-zuje or-ga-ni-za-cije i osobe,
+ []
+
+[32] [33] [34] [35]
+LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <17.28> not available
+(Font)              Font shape `T1/ptm/b/it' tried instead on input line 1469.
+
+Overfull \hbox (11.32724pt too wide) in paragraph at lines 1469--1469
+[]\T1/ptm/b/n/17.28 Implementacija po-mo¢u \T1/ptm/b/it/17.28 Flask-Appbuilder \T1/ptm/b/n/17.28 pro-gram-
+ []
+
+[36] (/usr/local/texlive/2016/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2015/06/04 1.6 listings language file
+) (/usr/local/texlive/2016/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2015/06/04 1.6 listings language file
+) (/usr/local/texlive/2016/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2015/06/04 1.6 listings language file
+) [37]
+LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <8> not available
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 1591.
+ [38]
+Overfull \hbox (34.89943pt too wide) in paragraph at lines 1619--1625
+\T1/ptm/m/n/12 raju do-datni atri-buti raz-reda ko-jima se pri-dru-ºuju veze ko-ri-²te-njem funk-cije \T1/pcr/m/n/12 relationship\T1/ptm/m/n/12 .
+ []
+
+[39] [40]
+Overfull \hbox (3.19304pt too wide) in paragraph at lines 1718--1724
+[]\T1/ptm/m/n/12 Prikazi se mogu me-žu-sobno po-ve-zi-vati ko-ris-te¢i atri-but raz-reda \T1/pcr/m/n/12 related_views\T1/ptm/m/n/12 .
+ []
+
+<slike/sponsormaster.png, id=185, 1173.38374pt x 302.12875pt>
+File: slike/sponsormaster.png Graphic file (type png)
+ <use slike/sponsormaster.png>
+Package pdftex.def Info: slike/sponsormaster.png used on input line 1733.
+(pdftex.def)             Requested size: 412.56497pt x 106.22609pt.
+ <slike/sponsordetail.png, id=187, 1175.39125pt x 657.45625pt>
+File: slike/sponsordetail.png Graphic file (type png)
+ <use slike/sponsordetail.png>
+Package pdftex.def Info: slike/sponsordetail.png used on input line 1740.
+(pdftex.def)             Requested size: 412.56497pt x 230.76521pt.
+ [41 <./slike/sponsormaster.png>] [42 <./slike/sponsordetail.png>] [43] <slike/loginscreen.png, id=201, 1283.79625pt x 462.72874pt>
+File: slike/loginscreen.png Graphic file (type png)
+ <use slike/loginscreen.png>
+Package pdftex.def Info: slike/loginscreen.png used on input line 1852.
+(pdftex.def)             Requested size: 412.56497pt x 148.70462pt.
+ <slike/adminmain.png, id=202, 1284.8pt x 365.365pt>
+File: slike/adminmain.png Graphic file (type png)
+ <use slike/adminmain.png>
+Package pdftex.def Info: slike/adminmain.png used on input line 1864.
+(pdftex.def)             Requested size: 412.56497pt x 117.32059pt.
+ [44 <./slike/loginscreen.png>] <slike/listroles.png, id=207, 1284.8pt x 665.48625pt>
+File: slike/listroles.png Graphic file (type png)
+ <use slike/listroles.png>
+Package pdftex.def Info: slike/listroles.png used on input line 1891.
+(pdftex.def)             Requested size: 412.56497pt x 213.69107pt.
+ [45 <./slike/adminmain.png>] <slike/addrole.png, id=212, 1179.40625pt x 417.56pt>
+File: slike/addrole.png Graphic file (type png)
+ <use slike/addrole.png>
+Package pdftex.def Info: slike/addrole.png used on input line 1904.
+(pdftex.def)             Requested size: 412.56497pt x 146.06535pt.
+ <slike/userform.png, id=213, 2386.9175pt x 1844.8925pt>
+File: slike/userform.png Graphic file (type png)
+ <use slike/userform.png>
+Package pdftex.def Info: slike/userform.png used on input line 1918.
+(pdftex.def)             Requested size: 412.56497pt x 318.86362pt.
+ [46 <./slike/listroles.png> <./slike/addrole.png>]
+File: slike/sponsormaster.png Graphic file (type png)
+ <use slike/sponsormaster.png>
+Package pdftex.def Info: slike/sponsormaster.png used on input line 1937.
+(pdftex.def)             Requested size: 412.56497pt x 106.22609pt.
+ <slike/addsponsor.png, id=219, 1187.43625pt x 601.24625pt>
+File: slike/addsponsor.png Graphic file (type png)
+ <use slike/addsponsor.png>
+Package pdftex.def Info: slike/addsponsor.png used on input line 1946.
+(pdftex.def)             Requested size: 412.56497pt x 208.89806pt.
+ [47 <./slike/userform.png>] <slike/sponsoradded.png, id=224, 1195.46625pt x 363.3575pt>
+File: slike/sponsoradded.png Graphic file (type png)
+ <use slike/sponsoradded.png>
+Package pdftex.def Info: slike/sponsoradded.png used on input line 1955.
+(pdftex.def)             Requested size: 412.56497pt x 125.39728pt.
+ <slike/sponsorfilter.png, id=225, 1186.4325pt x 512.91624pt>
+File: slike/sponsorfilter.png Graphic file (type png)
+ <use slike/sponsorfilter.png>
+Package pdftex.def Info: slike/sponsorfilter.png used on input line 1964.
+(pdftex.def)             Requested size: 412.56497pt x 178.35722pt.
+ [48 <./slike/addsponsor.png> <./slike/sponsoradded.png>] <slike/detail.png, id=231, 1183.42125pt x 657.45625pt>
+File: slike/detail.png Graphic file (type png)
+ <use slike/detail.png>
+Package pdftex.def Info: slike/detail.png used on input line 1975.
+(pdftex.def)             Requested size: 412.56497pt x 229.20023pt.
+ <slike/projectsponsor.png, id=232, 1179.40625pt x 293.095pt>
+File: slike/projectsponsor.png Graphic file (type png)
+ <use slike/projectsponsor.png>
+Package pdftex.def Info: slike/projectsponsor.png used on input line 1985.
+(pdftex.def)             Requested size: 412.56497pt x 102.52664pt.
+ [49 <./slike/sponsorfilter.png> <./slike/detail.png>] [50 <./slike/projectsponsor.png>] [51]
+Poglavlje 6.
+(./diplomski.bbl [52
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 42--46
+[]\T1/ptm/m/n/12 Daniel Vas Gas-par.  Flask-appbuilder, 2013.  URL $\T1/pcr/m/n/12 https : / /
+ []
+
+
+Underfull \hbox (badness 6625) in paragraph at lines 42--46
+\T1/pcr/m/n/12 flask-[]appbuilder . readthedocs . io / en / latest/$\T1/ptm/m/n/12 .  Pre-uzeto 16.
+ []
+
+) [53
+
+]
+Poglavlje A.
+[54
+
+] [55]
+Poglavlje B.
+<slike/m0.png, id=259, 244.915pt x 261.97874pt>
+File: slike/m0.png Graphic file (type png)
+ <use slike/m0.png>
+Package pdftex.def Info: slike/m0.png used on input line 2123.
+(pdftex.def)             Requested size: 165.02347pt x 176.52422pt.
+ <slike/m1.png, id=260, 244.915pt x 353.32pt>
+File: slike/m1.png Graphic file (type png)
+ <use slike/m1.png>
+Package pdftex.def Info: slike/m1.png used on input line 2128.
+(pdftex.def)             Requested size: 165.02347pt x 238.07097pt.
+ <slike/m2.png, id=261, 299.1175pt x 193.72375pt>
+File: slike/m2.png Graphic file (type png)
+ <use slike/m2.png>
+Package pdftex.def Info: slike/m2.png used on input line 2133.
+(pdftex.def)             Requested size: 165.02347pt x 106.87946pt.
+ [56
+
+ <./slike/m0.png>] <slike/m3.png, id=266, 231.86626pt x 193.72375pt>
+File: slike/m3.png Graphic file (type png)
+ <use slike/m3.png>
+Package pdftex.def Info: slike/m3.png used on input line 2138.
+(pdftex.def)             Requested size: 165.02347pt x 137.87885pt.
+ <slike/m4.png, id=267, 206.7725pt x 245.91875pt>
+File: slike/m4.png Graphic file (type png)
+ <use slike/m4.png>
+Package pdftex.def Info: slike/m4.png used on input line 2143.
+(pdftex.def)             Requested size: 165.02347pt x 196.26996pt.
+ <slike/m5.png, id=268, 228.855pt x 168.63pt>
+File: slike/m5.png Graphic file (type png)
+ <use slike/m5.png>
+Package pdftex.def Info: slike/m5.png used on input line 2148.
+(pdftex.def)             Requested size: 165.02347pt x 121.60133pt.
+ [57 <./slike/m1.png> <./slike/m2.png> <./slike/m3.png>] [58 <./slike/m4.png> <./slike/m5.png>] [59] [60] (./diplomski.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
 Here is how much of TeX's memory you used:
- 7256 strings out of 493014
- 101612 string characters out of 6133351
- 187486 words of memory out of 5000000
- 10613 multiletter control sequences out of 15000+600000
- 70235 words of font info for 88 fonts, out of 8000000 for 9000
+ 9412 strings out of 493014
+ 130544 string characters out of 6133351
+ 233407 words of memory out of 5000000
+ 12724 multiletter control sequences out of 15000+600000
+ 84891 words of font info for 100 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,18n,43p,305b,437s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2016/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on diplomski.pdf (25 pages, 153009 bytes).
+ 43i,18n,51p,305b,1685s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on diplomski.pdf (66 pages, 1376889 bytes).
 PDF statistics:
- 143 PDF objects out of 1000 (max. 8388607)
- 97 compressed objects within 1 object stream
+ 316 PDF objects out of 1000 (max. 8388607)
+ 191 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 26 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 116 words of extra memory for PDF output out of 10000 (max. 10000000)
 
